@@ -1,0 +1,71 @@
+$defalutColor:#000;
+$colors: ( headingColor: #6446ff, preragraphColor: #1b1b1b, linkColor: #1dc506); //decleared color
+@function color($value:$defalutColor) {
+    @if map-has-key($colors, $value) {
+        @return map-get($colors, $value);
+    }
+    @return $defalutColor; //when not decleared color then the return default color
+}
+
+$default:0px; //set the deafult vlaue for needed instant refarance:$default ok
+//padding utility
+@mixin p($value) {
+    padding: $value !important;
+}
+
+@mixin px($value:$default) {
+    padding-left: $value !important;
+    padding-right: $value !important;
+}
+
+@mixin py($value:$default) {
+    padding-top: $value !important;
+    padding-bottom: $value !important;
+}
+
+@mixin pl($value:$default) {
+    padding-left: $value !important;
+}
+
+@mixin pr($value:$default) {
+    padding-right: $value !important;
+}
+
+//margin utility
+@mixin m($value:$default) {
+    margin: $value !important;
+}
+
+@mixin mx($value:$default) {
+    margin-left: $value !important;
+    margin-right: $value !important;
+}
+
+@mixin my($value:$default) {
+    margin-top: $value !important;
+    margin-bottom: $value !important;
+}
+
+@mixin ml($value:$default) {
+    margin-left: $value !important;
+}
+
+@mixin mr($value:$default) {
+    margin-right: $value !important;
+}
+
+//uses
+header {
+    @include py(10px);
+    @include px(30px);
+    nav li {
+        display: inline-block;
+        a {
+            font-size: 15px;
+            //color: color(linkColor); //call the function for set color
+            color: color(); // when blank call then the give function default color it's predefined
+            @include p(30px);
+            border: 1px solid red;
+        }
+    }
+}
